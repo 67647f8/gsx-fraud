@@ -25,7 +25,7 @@ def is_user_id_real(id, doPrint=True):
     response = requests.get(url, headers=headers)
     s = BeautifulSoup(response.content, features="html.parser")
     e = s.select('span.item-info')
-    if e[0].string != '****':
+    if len(e) > 0 and e[0].string != '****':
         print('\t\t\t\t\t^^^ Above is a fake profile just created \n')
         return True
     else:
@@ -87,6 +87,13 @@ def update_last_id():
 
 if __name__ == "__main__":
     print("""
+    ***************************************************************************************
+    *** GSX disabled m.genshuixue.com/x/[id] as of Jun 2 after we published the report. ***
+    *** This script would no longer work                                                ***
+    ***************************************************************************************
+    
+    -----
+    
     This program uses binary search to locate the last user id on genshuixue.com.
     It probes a range of user ids and their encoded profile URLs.
     
